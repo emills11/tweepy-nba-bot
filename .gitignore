@@ -1,0 +1,4 @@
+venv
+.env
+games_today.csv
+__pycache__
