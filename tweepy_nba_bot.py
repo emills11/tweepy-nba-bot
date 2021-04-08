@@ -4,6 +4,9 @@ from games import retrieve_games
 from config import create_api
 from datetime import datetime
 import time
+import logging
+
+logger = logging.getLogger()
 
 def tweet_game_scores(api, date, last_games):
     # Retrieve DataFrame containing today's completed games
@@ -23,7 +26,7 @@ def tweet_game_scores(api, date, last_games):
                     f"{current['PTS_A']}-{current['PTS_B']}")
             # Use tweepy to tweet message
             api.update_status(tweet)
-            print(tweet)
+            logger.info(tweet)
             time.sleep(5)
 
         # Update csv file with new games
@@ -46,14 +49,14 @@ def main():
         current_time = get_time_minutes(datetime.now())
         # If the time has changed past 4 AM, assume there are no more games today and reset csv/date
         if last_time < 240 <= current_time:
-            print("Resetting daily games...")
+            logger.info("Resetting daily games...")
             new = pd.DataFrame(columns=['GAME_ID', 'TEAM_ID_A', 'TEAM_NAME_A', 'RECORD_A', 'PTS_A', 'TEAM_ID_B', 'TEAM_NAME_B', 'RECORD_B', 'PTS_B'])
             new.to_csv('games_today.csv', index=False)
             date = datetime.today().strftime("%Y-%m-%d")
 
         last_games = pd.read_csv('games_today.csv', dtype=str)
         tweet_game_scores(api, date, last_games)
-        print(f"{current_time}: Checking again in 5 minutes")
+        logger.info(f"{current_time}: Checking again in 5 minutes")
         last_time = current_time
         # Wait five minutes between checking games
         # NBA stats api only updates data ~30 minutes after game is done, still figuring out exact delay amount
