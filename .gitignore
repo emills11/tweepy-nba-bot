@@ -1,4 +1,4 @@
-venv
-.env
-games_today.csv
-__pycache__
+/bot/venv
+/bot/.env
+/bot/games_today.csv
+/bot/__pycache__

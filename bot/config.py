@@ -1,8 +1,5 @@
 import tweepy
-import logging
 import os
-
-logger = logging.getLogger()
 
 def create_api():
     # Keys / tokens are environment variables
@@ -20,7 +17,7 @@ def create_api():
         api.verify_credentials()
     except Exception as e:
         # Credentials could not be verified, keys are probably wrong / outdated
-        logger.error("Error creating API", exc_info=True)
+        print("Error creating API")
         raise e
-    logger.info("API created")
+    print("API created")
     return api

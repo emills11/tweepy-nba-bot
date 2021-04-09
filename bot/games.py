@@ -54,6 +54,8 @@ def retrieve_team_records():
 
 
 def retrieve_games(date):
+    print("Retrieving games...")
+
     # Access endpoint for all NBA games and select first 30
     gamefinder = leaguegamefinder.LeagueGameFinder()
     games = gamefinder.get_data_frames()[0].iloc[:30]
