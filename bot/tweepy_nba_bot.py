@@ -41,7 +41,7 @@ def main():
 
     EST = pytz.timezone('US/Eastern')
     last_time = get_time_minutes(datetime.now(EST))
-    date = datetime.today().strftime("%Y-%m-%d")
+    date = datetime.now(EST).strftime("%Y-%m-%d")
 
     # Main loop
     while True:
@@ -51,7 +51,7 @@ def main():
             print("Resetting daily games...")
             new = pd.DataFrame(columns=['GAME_ID', 'TEAM_ID_A', 'TEAM_NAME_A', 'RECORD_A', 'PTS_A', 'TEAM_ID_B', 'TEAM_NAME_B', 'RECORD_B', 'PTS_B'])
             new.to_csv('games_today.csv', index=False)
-            date = datetime.today().strftime("%Y-%m-%d")
+            date = datetime.now(EST).strftime("%Y-%m-%d")
 
         last_games = pd.read_csv('games_today.csv', dtype=str)
         tweet_game_scores(api, date, last_games)
