@@ -25,7 +25,7 @@ def tweet_game_scores(api, date, last_games):
             # Use tweepy to tweet message
             api.update_status(tweet)
             print(tweet)
-            time.sleep(5)
+            time.sleep(60)
 
         # Update csv file with new games
         games_today.to_csv('games_today.csv', index=False)
