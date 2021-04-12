@@ -2,3 +2,4 @@
 /bot/.env
 /bot/games_today.csv
 /bot/__pycache__
+.vscode
