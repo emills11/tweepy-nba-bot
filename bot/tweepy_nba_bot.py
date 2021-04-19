@@ -1,7 +1,7 @@
 import tweepy
 import pandas as pd
-from games import retrieve_games
-from config import create_api
+from bot.games import retrieve_games
+from bot.config import create_api
 from datetime import datetime
 import pytz
 import time
