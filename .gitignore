@@ -2,5 +2,6 @@
 /bot/.env
 /bot/games_today.csv
 /bot/__pycache__
+/docker_tar/
 .vscode
 tweepy-nba-bot.pem
